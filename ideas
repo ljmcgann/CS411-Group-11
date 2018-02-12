@@ -2,11 +2,12 @@
 
 Ideas:
 
+
 1.
-Using [personality API (traitify)] and [API like NY Times] to match movies/books/Universities and some others to fit this persons’ personality. 
-Or we can grab data from social medias or Reddit to expand this idea. 
+Create an algorithm to calculate a person's criminal or lucidity level from his or her data from the websites. 
+Combine it with personality API, Instagram API and so on.
 
 
 2.
-Create an algorithm to calculate a person's criminal or lucidity level from his or her data from the websites. 
-Combine it with personality API, Instagram API and so on.
+Using [personality API (traitify)] and [API like NY Times] to match movies/books/Universities and some others to fit this persons’ personality. 
+Or we can grab data from social medias or Reddit to expand this idea. 
