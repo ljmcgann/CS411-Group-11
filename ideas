@@ -1,11 +1,11 @@
 Ideas:
 
 1.(main)
-Create an algorithm to calculate a person's criminal or lucidity level or mental states from his or her data from the websites. 
-Combine it with personality API, Instagram API and so on. We can check the words in their posts and the photos on their Instagram accounts.
-The filters they use and the tone of the photos and the frequency of some key words  can be parameters of the algorithm.
+Create an algorithm to calculate a person's criminal or lucidity level or mental states from his or her data from the websites 
+using personality API, Instagram API and so on. We can check the words in their posts and the photos on their Instagram accounts. 
+The filters they use, the tone of the photos and the frequency of some key words can be the parameters of the algorithm.
 
 
 2.
-Using [personality API (traitify)] (or plus face recognition API) and [API like NY Times] to match movies/books/Universities and some others to fit this persons’ personality. 
-We can grab data from social medias or Reddit to expand this idea. 
+Using [personality API (traitify)] (or plus face recognition API) and [API like NY Times] to match movies/books/Universities 
+and other related things to fit this persons’ personality. We can grab data from social medias or Reddit to expand this idea. 
