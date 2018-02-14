@@ -1,7 +1,7 @@
 Ideas:
 
 1.(main)
-Create an algorithm to calculate a person's criminal or lucidity level or mental states from his or her data from the websites 
+Create an algorithm to calculate a person's crime index or lucidity level or mental states from his or her data from the websites 
 using personality API, Instagram API and so on. We can check the words in their posts and the photos on their Instagram accounts. 
 The filters they use, the tone of the photos and the frequency of some key words can be the parameters of the algorithm.
 
