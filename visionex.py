@@ -1,3 +1,20 @@
+"""TO RUN: must have this file and the apikey.json file in the same folder. 
+
+Then must write in command line: 'export GOOGLE_APPLICATION_CREDENTIALS=apikey.json'. 
+
+Then to run you have to download a picture into the folder and then add the picture name as an argument...
+python visionex.py pictureName          
+
+This will output the safe_search api which is basically if the picture is violent, for adults, about injuries(medical)
+and inappropriate context overall. 
+
+The code i have commented out is to use the labels api which just describes what 
+is shown in the picture with basic labels (nothing to do with violence but very descriptive). 
+
+"""
+
+
+
 import io
 import os
 from google.cloud import vision
