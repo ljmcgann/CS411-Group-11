@@ -1,0 +1,3 @@
+problem for database:
+1. imput image do not have a specific id, so that we cannot know whether this image is in the database.
+2. the output result from api cannot be used, because it has the type that defined by google, so we cannot store the result in database. 
