@@ -1,3 +1,9 @@
 from django import forms
-class UsernameForm(forms.Form):
-    username = forms.CharField(label='Username', max_length=100)
+from instasafe.models import Post
+
+class UsernameForm(forms.ModelForm):
+    post = forms.CharField()
+
+    class Meta:
+        model = Post
+        fields = ('post',)

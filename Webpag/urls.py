@@ -1,9 +1,10 @@
 from django.conf.urls import url
 from instasafe import views
+from django.views.generic import TemplateView
 
 urlpatterns= [
-    url(r'^$', views.HomePageView.as_view()),
-    url(r'your-name/', views.HomePageView.as_view()),
-    url(r'/thanks/^$', views.HomePageView.as_view()),
+    url(r'^$', views.HomeView.as_view()),
+    url(r'home/', views.HomeView.as_view())
+
 
 ]
