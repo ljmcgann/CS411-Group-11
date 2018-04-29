@@ -1,6 +1,6 @@
 """TO RUN: must have this file and the apikey.json file in the same folder. 
 
-Then must write in command line: 'export GOOGLE_APPLICATION_CREDENTIALS=apikey.json'. 
+!!!Then must write in command line: 'export GOOGLE_APPLICATION_CREDENTIALS=apikey.json'. 
 
 This will output the safe_search api which is basically if the picture is violent, for adults, about injuries(medical)
 and inappropriate context overall.
@@ -36,7 +36,7 @@ def detect_safe_search(path):
     likelihood_name = ('UNKNOWN', 'VERY_UNLIKELY', 'UNLIKELY', 'POSSIBLE',
                        'LIKELY', 'VERY_LIKELY')
     print('Safe search:')
-    print(type('adult: {}'.format(likelihood_name[safe.adult])))
+    print('adult: {}'.format(likelihood_name[safe.adult]))
     print('medical: {}'.format(likelihood_name[safe.medical]))
     print('spoofed: {}'.format(likelihood_name[safe.spoof]))
     print('violence: {}'.format(likelihood_name[safe.violence]))
