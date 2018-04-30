@@ -22,10 +22,16 @@ from google.cloud.vision import types
 import sys
 import instagram_test as ig
 
-def test_with_ig():
-    images = ig.get_image_bytes()
-    vision_client = vision.ImageAnnotatorClient()
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "instasafe/apikey.json"
 
+def get_user_data(access_token):
+    i = 0
+    res = []
+    (urls, images) = ig.get_image_bytes(access_token)
+    vision_client = vision.ImageAnnotatorClient()
+    #vision_client = vision.ImageAnnotatorClient().from_service_account_json('apikey.json')
+
+    res = [ [u, None] for u in urls]
     for img_bytes in images:
         image = types.Image(content=img_bytes)
         vision_client = vision.ImageAnnotatorClient()
@@ -33,8 +39,23 @@ def test_with_ig():
         #labels = response.label_annotations
         response = vision_client.safe_search_detection(image=image)
         labels = response.safe_search_annotation
+        res[i][1] = labels
         print labels
+        i += 1
         #for label in labels:
         #print label.description #, label.score
+    return toHTMLDict(res)
 
-test_with_ig()
+def toHTMLDict(res):
+    dicto = {}
+    x = 0
+    for i in res:
+        #(arg1, arg2) = res[x]
+        arg1 = res[x][0]
+        arg2 = res[x][1]
+        first = 'url'+ str(x)
+        second = 'label'+ str(x)
+        dicto[first] = arg1
+        dicto[second] = arg2
+        x += 1
+    return dicto
