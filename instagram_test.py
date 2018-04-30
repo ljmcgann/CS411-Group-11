@@ -1,16 +1,20 @@
 import urllib, json, cStringIO
 from PIL import Image
 import io
+#import apikey.json
+#export GOOGLE_APPLICATION_CREDENTIALS=apikey.json
 
-def load_image_urls(username = None):
-    TOKEN = '29991352.6f30ec7.28527c140f7c402396453b31b7ee2230'
 
-    _url = 'https://api.instagram.com/v1/users/self/media/recent/?access_token={}'.format(TOKEN)
+def load_image_urls(token):
+    #TOKEN = '29991352.f2b7bbf.da2f4026bc154e20923ef2a902326cdd'
+
+    _url = 'https://api.instagram.com/v1/users/self/media/recent/?access_token={}'.format(token)
 
     search_results = urllib.urlopen(_url)
 
     data = json.load(search_results) # Load Instagram Media Result
     image_urls = []
+    #print data
     for row in data['data']:
         if row['type'] == "image": # Filter non images files
             filename = row['id']
@@ -35,15 +39,13 @@ def to_bytes(images):
 
         images_bytes.append(img_byte_arr.getvalue())
 #        print(type(img_byte_arr))
-        print(type(img_byte_arr.getvalue()))
+        #print(type(img_byte_arr.getvalue()))
     return images_bytes
 
 
 #    img.convert('RGB').save(output, 'BMP')
-def get_image_bytes(username = None):
-    image_urls = load_image_urls()
+def get_image_bytes(token, username = None):
+    image_urls = load_image_urls(token)
     images = load_images(image_urls)
     images_bytes = to_bytes(images)
-    return images_bytes
-
-get_image_bytes()
+    return (image_urls, images_bytes)
