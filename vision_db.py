@@ -1,6 +1,6 @@
 """TO RUN: must have this file and the apikey.json file in the same folder. 
 
-Then must write in command line: 'export GOOGLE_APPLICATION_CREDENTIALS=apikey.json'. 
+!!!Then must write in command line: 'export GOOGLE_APPLICATION_CREDENTIALS=apikey.json'. 
 
 This will output the safe_search api which is basically if the picture is violent, for adults, about injuries(medical)
 and inappropriate context overall.
@@ -36,11 +36,17 @@ def detect_safe_search(path):
     
     likelihood_name = ('UNKNOWN', 'VERY_UNLIKELY', 'UNLIKELY', 'POSSIBLE',
                        'LIKELY', 'VERY_LIKELY')
-    print('Safe search:')
-    print('adult: {}'.format(likelihood_name[safe.adult]))
-    print('medical: {}'.format(likelihood_name[safe.medical]))
-    print('spoofed: {}'.format(likelihood_name[safe.spoof]))
-    print('violence: {}'.format(likelihood_name[safe.violence]))
+    
+    title = 'Safe search:'
+    global search_a = 'adult: {}'.format(likelihood_name[safe.adult])
+    global search_m = 'medical: {}'.format(likelihood_name[safe.medical])
+    global search_s = 'spoofed: {}'.format(likelihood_name[safe.spoof])
+    global search_v = 'violence: {}'.format(likelihood_name[safe.violence])
+    print(title)
+    print(search_a)
+    print(search_m)
+    print(search_s)
+    print(search_v)
 
 
 def run_local(args):
@@ -61,7 +67,7 @@ def calculateScore(result):
     elif result == "VERY_LIKELY":
         return 5
 
-def run_database(username, adult, medical, spoof, violence):
+def run_database(username):
     client = pymongo.MongoClient('mongodb://localhost:27017/')
 
     db = client.test_database
@@ -71,23 +77,24 @@ def run_database(username, adult, medical, spoof, violence):
     if users.find({'username':username}) == None:
         user = {}
         user['username'] = username
-        user['adult_score'] = calculateScore(adult)
-        user['medical_score'] = calculateScore(medical)
-        user['spoof_score'] = calculateScore(spoof)
-        user['violence_score'] = calculateScore(violence)
+        user['adult_score'] = calculateScore(search_a)
+        user['medical_score'] = calculateScore(search_m)
+        user['spoof_score'] = calculateScore(search_s)
+        user['violence_score'] = calculateScore(search_v)
         users.insert(user)
     else:
-        adult_score = users.
-        medical_score = users.
-        spoof_score = users.
-        violence_score = users.
+        result = users.find({'username':username})
+        adult_score = users.result[0]['adult_score']
+        medical_score = users.result[0]['medical_score']
+        spoof_score = users.result[0]['spoof_score']
+        violence_score = users.result[0]['violence_score']
 
         user = {}
         user['username'] = username
-        user['adult_score'] = adult_score + calculateScore(adult)
-        user['medical_score'] = medical_score + calculateScore(medical)
-        user['spoof_score'] = spoof_score + calculateScore(spoof)
-        user['violence_score'] = violence_score + calculateScore(violence)
+        user['adult_score'] = adult_score + calculateScore(search_a)
+        user['medical_score'] = medical_score + calculateScore(search_m)
+        user['spoof_score'] = spoof_score + calculateScore(search_s)
+        user['violence_score'] = violence_score + calculateScore(search_v)
         users.update({'username':username},{$set:user})
 
 
@@ -105,8 +112,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     run_local(args)
 
-    run_database()
 
+    run_database(username)
 
 
 
