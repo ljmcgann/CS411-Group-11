@@ -3,13 +3,16 @@
 {% block body %}
 
 <div class="container" >
-  <h1> Enter Instagram Username </h1>
-  <form method = "post">
+  <br />
+  <br />
+  <center><h1> <strong> Safe-Search <strong></h1><center>
+  <center><h2> Enter Instagram Username: </h2><center>
+    <br />
+  <body style="background-color:powderblue;">
+  <center><form method = "post">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button type = "submit" >Submit</button>
+      {{ form }} <button type = "submit" >OK</button><center>
   </form>
-  <h2>{{ text }}</h2>
 </div>
 
 {% endblock %}
