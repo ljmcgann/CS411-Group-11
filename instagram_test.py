@@ -6,7 +6,7 @@ import io
 
 
 def load_image_urls(token):
-    #TOKEN = '29991352.f2b7bbf.da2f4026bc154e20923ef2a902326cdd'
+    
 
     _url = 'https://api.instagram.com/v1/users/self/media/recent/?access_token={}'.format(token)
 
